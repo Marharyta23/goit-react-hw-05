@@ -11,7 +11,6 @@ export default function SearchBar({
 
   const changeText = (e) => {
     setText(e.target.value);
-    onFilterChange(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -21,6 +20,7 @@ export default function SearchBar({
       return;
     } else {
       onFormSubmit(text);
+      onFilterChange(text);
       e.target.reset();
     }
   };
