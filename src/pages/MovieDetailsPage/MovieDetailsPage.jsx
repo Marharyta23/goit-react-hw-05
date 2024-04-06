@@ -69,7 +69,6 @@ export default function MovieDetailsPage() {
         </div>
       </div>
       <div>
-        <h2></h2>
         <nav className={css.nav}>
           <NavLink to="cast" state={location.state} className={buildLinkClass}>
             Cast
