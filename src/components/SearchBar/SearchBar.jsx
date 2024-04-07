@@ -19,7 +19,7 @@ export default function SearchBar({
       onEmptyString();
       return;
     } else {
-      onFormSubmit(text);
+      onFormSubmit();
       onFilterChange(text);
       e.target.reset();
     }

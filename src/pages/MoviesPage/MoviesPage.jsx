@@ -15,7 +15,6 @@ export default function MoviesPage() {
   const [queryMoviesPage, setQueryMoviesPage] = useState(1);
   const [queryError, setQueryError] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [query, setQuery] = useState("");
   const [totaQuerylPages, setTotalQueryPages] = useState(0);
   const [params, setParams] = useSearchParams();
 
@@ -26,19 +25,18 @@ export default function MoviesPage() {
     setParams(params);
   };
 
-  const onFormSubmit = (query) => {
-    setQuery(query);
+  const onFormSubmit = () => {
     setQueryMoviesPage(1);
     setQueryMovies([]);
   };
 
   useEffect(() => {
-    if (!query) return;
+    if (!filter) return;
     setLoader(true);
     const trendingMoviesFromApi = async () => {
       try {
         const { results, total_pages } = await moviesOnQuery(
-          query,
+          filter,
           queryMoviesPage
         );
         if (results.length === 0) {
@@ -54,7 +52,7 @@ export default function MoviesPage() {
       }
     };
     trendingMoviesFromApi();
-  }, [query, filter, queryMoviesPage]);
+  }, [filter, queryMoviesPage]);
 
   const onLoadMore = () => {
     setQueryMoviesPage(queryMoviesPage + 1);
